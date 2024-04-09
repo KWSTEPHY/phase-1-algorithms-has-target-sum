@@ -1,6 +1,32 @@
-function hasTargetSum(array, target) {
+
   // Write your algorithm here
+  function hasTargetSum(arr, target) {
+    // Create an empty set to store the seen numbers
+    const seen = new Set();
+
+    // Iterate through the array
+    for (let num of arr) {
+        // Calculate the complement needed to achieve the target sum
+        const complement = target - num;
+        
+        // If the complement is in the set, a pair with the target sum is found
+        if (seen.has(complement)) {
+            return true;
+        }
+        
+        // Add the current number to the set
+        seen.add(num);
+    }
+    
+    // If no pair with the target sum is found, return false
+    return false;
 }
+
+// Example usage:
+console.log(hasTargetSum([1, 2, 3, 4, 5], 7)); // Output: true (because 3 + 4 = 7)
+console.log(hasTargetSum([1, 2, 3, 4, 5], 10)); // Output: false (no pair sums up to 10)
+
+
 
 /* 
   Write the Big O time complexity of your function here
